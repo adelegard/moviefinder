@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, makeStyles } from '@material-ui/core';
 import MovieTable from '../movieTable';
 import { useMapOfFavorites } from './context';
+import Empty from '../empty';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,10 +22,14 @@ const Favorites = () => {
   return (
     <Grid container spacing={3} className={classes.root}>
       <Grid item xs={12}>
-        <MovieTable
-          movies={movies}
-          emptyText="No movies have been favorited. Go to the search tab and find some to favorite!"
-        />
+        {movies.length > 0 ? (
+          <MovieTable movies={movies} />
+        ) : (
+          <Empty>
+            No movies have been favorited. Go to the search tab and find some to
+            favorite!
+          </Empty>
+        )}
       </Grid>
     </Grid>
   );

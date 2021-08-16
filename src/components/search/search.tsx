@@ -4,6 +4,8 @@ import useQueryMovies, {
   FormattedResponseProps,
 } from '../../service/useQueryMovies';
 import MovieTable from '../movieTable';
+import Empty, { shouldDisplayEmptyState } from '../empty';
+import Error from '../error';
 
 const SEARCH_TEXT_DEBOUNCE_MS = 500;
 
@@ -68,10 +70,11 @@ const Search = () => {
     }
   }, [queryMovies.data]);
 
-  const emptyText =
-    queryMovies.isFetched && !queryMovies.isLoading && searchValue.length > 0
-      ? 'No movies found. Try changing your search.'
-      : '';
+  const displayEmpty = shouldDisplayEmptyState({
+    ...queryMovies,
+    searchValue,
+    movies: cachedResponse?.movies,
+  });
 
   return (
     <Grid container spacing={3} className={classes.root}>
@@ -85,14 +88,19 @@ const Search = () => {
         />
       </Grid>
       <Grid item xs={12}>
-        <MovieTable
-          emptyText={emptyText}
-          movies={cachedResponse?.movies ?? []}
-          pageNumber={pageNumber}
-          onPageChange={onPageChange}
-          totalResults={cachedResponse?.totalResults}
-          isLoading={queryMovies.isLoading}
-        />
+        {queryMovies.isError ? (
+          <Error />
+        ) : displayEmpty ? (
+          <Empty>No movies found. Try changing your search.</Empty>
+        ) : (
+          <MovieTable
+            movies={cachedResponse?.movies ?? []}
+            pageNumber={pageNumber}
+            onPageChange={onPageChange}
+            totalResults={cachedResponse?.totalResults}
+            isLoading={queryMovies.isLoading}
+          />
+        )}
       </Grid>
     </Grid>
   );

@@ -12,11 +12,6 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-test('renders the movie emptyText when no movies', () => {
-  render(<MovieTable movies={[]} emptyText="some empty text" />);
-  expect(screen.getByText('some empty text')).toBeInTheDocument();
-});
-
 test('renders the movie cards', () => {
   render(
     <MovieTable
@@ -37,7 +32,6 @@ test('renders the movie cards', () => {
       totalResults={10}
       pageNumber={1}
       onPageChange={() => undefined}
-      emptyText="some empty text"
     />,
   );
   expect(screen.getAllByText('movie_card').length).toEqual(2);

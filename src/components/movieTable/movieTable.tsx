@@ -1,6 +1,5 @@
 import React from 'react';
-import { Grid, Typography } from '@material-ui/core';
-import Alert from '@material-ui/lab/Alert';
+import { Grid } from '@material-ui/core';
 import Pagination from '@material-ui/lab/Pagination';
 import Movie from '../../types/movie';
 import MovieCard from '../movieCard';
@@ -13,7 +12,6 @@ import {
 const onPageChangeNoOp = () => undefined;
 
 interface Props {
-  emptyText: string;
   isLoading?: boolean;
   movies: Movie[];
   totalResults?: number;
@@ -25,7 +23,6 @@ interface Props {
 }
 
 const MovieTable = ({
-  emptyText,
   isLoading,
   movies,
   totalResults = 0,
@@ -75,13 +72,6 @@ const MovieTable = ({
             />
           );
         })}
-      {movies.length === 0 && emptyText && (
-        <Grid item xs={12}>
-          <Alert severity="info">
-            <Typography variant="body1">{emptyText}</Typography>
-          </Alert>
-        </Grid>
-      )}
       {pagination}
     </Grid>
   );
