@@ -47,6 +47,7 @@ const MovieTable = ({
     <Grid item xs={12}>
       <Pagination
         color="primary"
+				siblingCount={0}
         count={Math.ceil(totalResults / 10)}
         page={pageNumber}
         onChange={onPageChange ?? onPageChangeNoOp}

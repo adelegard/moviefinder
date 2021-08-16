@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     padding: theme.spacing(2),
+    paddingTop: 0,
     alignItems: 'center',
     flexDirection: 'column',
   },
@@ -21,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
   },
   containerInner: {
+    padding: theme.spacing(2),
     height: '340px',
     overflow: 'hidden',
     display: 'flex',
@@ -30,12 +32,8 @@ const useStyles = makeStyles((theme) => ({
   detailsLink: {
     marginTop: theme.spacing(1),
   },
-  image: {
-    width: '100%',
-  },
   poster: {
     height: '100%',
-    padding: theme.spacing(2),
   },
 }));
 
@@ -62,11 +60,7 @@ const MovieCard = ({ movie, isFavorite, onFavoriteClick }: Props) => {
           </div>
         ) : (
           <div className={classes.containerInner}>
-            <img
-              src={movie.Poster}
-              alt={movie.Title}
-              className={classes.image}
-            />
+            <img src={movie.Poster} alt={movie.Title} />
           </div>
         )}
         <div className={classes.buttonContainer}>
