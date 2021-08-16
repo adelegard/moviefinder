@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Search = () => {
   const classes = useStyles();
-  const [searchValue, setSearchValue] = React.useState('matrix');
+  const [searchValue, setSearchValue] = React.useState('');
   const [searchValueApi, setSearchValueApi] = React.useState('');
   const [pageNumber, setPageNumber] = React.useState(1);
   const [cachedResponse, setCachedResponse] =
