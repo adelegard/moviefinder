@@ -2,9 +2,9 @@ import { ImdbIDsToMovie as ImdbIDsToMovieProxy } from './context';
 
 export { default } from './favorites';
 export {
-  useAddMovie,
-  useRemoveMovie,
-  useImdbIdsToMovie,
+  useAddFavoriteMovie,
+  useRemoveFavoriteMovie,
+  useMapOfFavorites,
   FavoritesProvider,
 } from './context';
 export type ImdbIDsToMovie = ImdbIDsToMovieProxy;

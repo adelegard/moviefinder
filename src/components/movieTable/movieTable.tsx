@@ -1,9 +1,14 @@
 import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
-import { Alert, Pagination } from '@material-ui/lab';
+import Alert from '@material-ui/lab/Alert';
+import Pagination from '@material-ui/lab/Pagination';
 import Movie from '../../types/movie';
 import MovieCard from '../movieCard';
-import { useAddMovie, useRemoveMovie, useImdbIdsToMovie } from '../favorites';
+import {
+  useAddFavoriteMovie,
+  useRemoveFavoriteMovie,
+  useMapOfFavorites,
+} from '../favorites';
 
 const onPageChangeNoOp = () => undefined;
 
@@ -27,11 +32,11 @@ const MovieTable = ({
   pageNumber = 1,
   onPageChange,
 }: Props) => {
-  const imdbIDsToMovie = useImdbIdsToMovie();
-  const addFavorite = useAddMovie();
-  const removeFavorite = useRemoveMovie();
+  const movieFavoritesMap = useMapOfFavorites();
+  const addFavorite = useAddFavoriteMovie();
+  const removeFavorite = useRemoveFavoriteMovie();
   const onFavoriteClick = (movie: Movie) => {
-    const isFavorite = Boolean(imdbIDsToMovie[movie.imdbID]);
+    const isFavorite = Boolean(movieFavoritesMap[movie.imdbID]);
     if (isFavorite) {
       removeFavorite(movie);
     } else {
@@ -47,7 +52,7 @@ const MovieTable = ({
     <Grid item xs={12}>
       <Pagination
         color="primary"
-				siblingCount={0}
+        siblingCount={0}
         count={Math.ceil(totalResults / 10)}
         page={pageNumber}
         onChange={onPageChange ?? onPageChangeNoOp}
@@ -60,7 +65,7 @@ const MovieTable = ({
       {pagination}
       {movies.length > 0 &&
         movies.map((movie) => {
-          const isFavorite = Boolean(imdbIDsToMovie[movie.imdbID]);
+          const isFavorite = Boolean(movieFavoritesMap[movie.imdbID]);
           return (
             <MovieCard
               key={movie.imdbID}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Tabs, Tab, Typography, makeStyles } from '@material-ui/core';
 import Search from '../search';
-import Favorites, { useImdbIdsToMovie } from '../favorites';
+import Favorites, { useMapOfFavorites } from '../favorites';
 import Footer from '../footer';
 
 const useStyles = makeStyles((theme) => ({
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
 const MovieTabs = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const imdbIdsToMovie = useImdbIdsToMovie();
+  const imdbIdsToMovie = useMapOfFavorites();
   const numFavorites = React.useMemo(
     () => Object.keys(imdbIdsToMovie).length,
     [imdbIdsToMovie],

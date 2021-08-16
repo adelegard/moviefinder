@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, makeStyles } from '@material-ui/core';
 import MovieTable from '../movieTable';
-import { useImdbIdsToMovie } from './context';
+import { useMapOfFavorites } from './context';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,10 +12,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Favorites = () => {
   const classes = useStyles();
-  const imdbIdsToMovie = useImdbIdsToMovie();
+  const movieFavoritesMap = useMapOfFavorites();
   const movies = React.useMemo(
-    () => Object.values(imdbIdsToMovie),
-    [imdbIdsToMovie],
+    () => Object.values(movieFavoritesMap),
+    [movieFavoritesMap],
   );
 
   return (

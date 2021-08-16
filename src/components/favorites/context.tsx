@@ -17,15 +17,15 @@ export const Context = React.createContext<Props>({
   removeMovie: () => undefined,
 });
 
-export const useImdbIdsToMovie = () => {
+export const useMapOfFavorites = () => {
   return React.useContext(Context).imdbIdsToMovie;
 };
 
-export const useAddMovie = () => {
+export const useAddFavoriteMovie = () => {
   return React.useContext(Context).addMovie;
 };
 
-export const useRemoveMovie = () => {
+export const useRemoveFavoriteMovie = () => {
   return React.useContext(Context).removeMovie;
 };
 
