@@ -30,7 +30,7 @@ const findMoviesFetch = async ({
     page,
   });
 
-  const response = await fetch(`http://www.omdbapi.com/?${query}`, {
+  const response = await fetch(`https://www.omdbapi.com/?${query}`, {
     method: 'GET',
     headers: { Accept: 'application/json' },
   });

@@ -50,8 +50,6 @@ const Search = () => {
     _event: React.ChangeEvent<unknown> | null,
     page: number,
   ) => {
-    console.log('page', page);
-
     setPageNumber(page);
   };
   const queryMovies = useQueryMovies(
@@ -69,8 +67,6 @@ const Search = () => {
       setCachedResponse(queryMovies.data);
     }
   }, [queryMovies.data]);
-
-  console.log('queryMovies', queryMovies);
 
   const emptyText =
     queryMovies.isFetched && !queryMovies.isLoading && searchValue.length > 0
