@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, TextField, makeStyles } from '@material-ui/core';
+import xss from 'xss';
 import useQueryMovies, {
   FormattedResponseProps,
 } from '../../service/useQueryMovies';
@@ -39,7 +40,7 @@ const Search = () => {
       clearTimeout(timeout.current);
     }
     timeout.current = setTimeout(() => {
-      setSearchValueApi(searchValue);
+      setSearchValueApi(xss(searchValue));
     }, SEARCH_TEXT_DEBOUNCE_MS);
     return () => {
       if (timeout.current) {

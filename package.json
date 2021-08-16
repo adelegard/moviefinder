@@ -10,7 +10,8 @@
     "react-dom": "^17.0.2",
     "react-query": "^3.19.6",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "xss": "^1.0.9"
   },
   "scripts": {
     "lint": "eslint \"src/**/*.{tsx,ts,js}\"",
